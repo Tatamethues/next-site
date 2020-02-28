@@ -66,11 +66,14 @@ function SidebarRoutes({ isMobile, routes: currentRoutes, level = 1 }) {
 }
 
 const Docs = ({ routes, route, data, html }) => {
+  const router = useRouter();
+
+  console.log('DATA', { routes, route, router });
+
   if (!route) {
     return <Error statusCode={404} />;
   }
 
-  const router = useRouter();
   const { asPath } = router;
   const title = `${data.title || route.title} - Documentation | Next.js`;
   const isMobile = useIsMobile();
