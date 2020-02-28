@@ -81,8 +81,9 @@ export default withPure(() => (
               </Link>
             </p>
             <p>
-              {/* blog is AMP don't so we don't use next/link */}
-              <a href="/blog">Blog</a>
+              <Link href="/blog" prefetch={false}>
+                <a>Blog</a>
+              </Link>
             </p>
           </div>
           <div>
@@ -114,11 +115,6 @@ export default withPure(() => (
                 target="_blank"
               >
                 Releases
-              </a>
-            </p>
-            <p>
-              <a href={links.spectrum} rel="noopener noreferrer" target="_blank">
-                Spectrum
               </a>
             </p>
             <p>

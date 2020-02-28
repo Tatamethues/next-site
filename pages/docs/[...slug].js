@@ -42,7 +42,14 @@ function SidebarRoutes({ isMobile, routes: currentRoutes, level = 1 }) {
       }
 
       return (
-        <Category key={pathname} level={level} title={title} selected={selected} opened={opened}>
+        <Category
+          key={pathname}
+          isMobile={isMobile}
+          level={level}
+          title={title}
+          selected={selected}
+          opened={opened}
+        >
           <SidebarRoutes isMobile={isMobile} routes={routes} level={level + 1} />
         </Category>
       );
@@ -97,7 +104,7 @@ const Docs = ({ routes, route, data, html }) => {
               <Sidebar fixed>
                 <SidebarRoutes routes={routes} />
               </Sidebar>
-              <DocsPage path={route.path} html={html} />
+              <DocsPage route={route} routes={routes} html={html} />
             </div>
             <style jsx>{`
               .content {
@@ -126,7 +133,7 @@ const Docs = ({ routes, route, data, html }) => {
 export async function unstable_getStaticPaths() {
   const tag = await getLatestTag();
   const manifest = await fetchDocsManifest(tag);
-  return getPaths(manifest.routes);
+  return { paths: getPaths(manifest.routes) };
 }
 
 export async function unstable_getStaticProps({ params }) {

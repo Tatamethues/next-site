@@ -36,7 +36,7 @@ export default function Sidebar({ active, children, fixed }) {
           flex-direction: column;
           z-index: 1;
         }
-        .sidebar.fixed.searching .sidebar-content {
+        .sidebar.fixed.searching > .sidebar-content {
           display: none;
         }
         .sidebar-search {

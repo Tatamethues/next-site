@@ -9,7 +9,6 @@ import NextLogo from './logo';
 import Container from './container';
 
 import GitHubLogo from './icons/github';
-import SpectrumLogo from './icons/spectrum';
 import HeaderFeedback from './header-feedback';
 
 import { links } from '../site-manifest';
@@ -41,17 +40,6 @@ function Navbar() {
               className="icon mute"
             >
               <GitHubLogo color="currentColor" />
-            </a>
-
-            <a
-              href={links.spectrum}
-              aria-label="Next.js on Spectrum"
-              rel="noopener noreferrer"
-              target="_blank"
-              className="icon mute spectrum"
-            >
-              <SpectrumLogo color="currentColor" />
-              <span className="badge" />
             </a>
           </div>
         </div>
@@ -107,15 +95,15 @@ function Navbar() {
             </a>
           </Link>
 
-          {/* blog is AMP so don't use next/link as it causes a 404 */}
-          <a
-            href="/blog"
-            className={cn('mute', {
-              selected: route.startsWith('/blog')
-            })}
-          >
-            Blog
-          </a>
+          <Link href="/blog">
+            <a
+              className={cn('mute', {
+                selected: route.startsWith('/blog')
+              })}
+            >
+              Blog
+            </a>
+          </Link>
 
           {!isAmp && (
             <div className="header-feedback">
@@ -130,17 +118,6 @@ function Navbar() {
             className="icon mute"
           >
             <GitHubLogo color="currentColor" />
-          </a>
-
-          <a
-            href={links.spectrum}
-            aria-label="Next.js on Spectrum"
-            rel="noopener noreferrer"
-            target="_blank"
-            className="icon mute spectrum"
-          >
-            <SpectrumLogo color="currentColor" />
-            <span className="badge" />
           </a>
         </div>
       </nav>
@@ -190,22 +167,6 @@ function Navbar() {
 
         a.icon > :global(div.container) {
           overflow: visible;
-        }
-
-        .spectrum {
-          position: relative;
-        }
-
-        .badge {
-          position: absolute;
-          right: -5px;
-          bottom: -3px;
-          width: 10px;
-          height: 10px;
-          border-radius: 50%;
-          background-color: #2bdb66;
-          pointer-events: none;
-          border: 1px solid #fff;
         }
 
         .mobile-logo,

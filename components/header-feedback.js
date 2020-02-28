@@ -289,11 +289,17 @@ class HeaderFeedback extends Component {
             <style jsx>
               {`
                 .geist-feedback-input {
+                  --open-width: 310px;
+                  --open-height: 174px;
+                  --closed-width: 90px;
+                  --closed-height: 32px;
+                  --padding: 4px 12px;
+
                   margin-right: 8px;
                   padding: 0;
                   position: relative;
-                  height: 32px;
-                  width: 90px;
+                  height: var(--closed-height);
+                  width: var(--closed-width);
                   display: inline-block;
                   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
                     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
@@ -306,14 +312,14 @@ class HeaderFeedback extends Component {
                   border-width: 0;
                   background: #fff;
                   border: 1px solid #eaeaea;
-                  padding: 4px 12px;
+                  padding: var(--padding);
                   line-height: 1.5;
                   font-size: 0.875rem;
                   border-radius: 5px;
                   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
                     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-                  width: 90px;
-                  height: 32px;
+                  width: var(--closed-width);
+                  height: var(--closed-height);
                   resize: none;
                   height: 100%;
                   /* fixes a bug in ff where the animation of the chat
@@ -355,17 +361,18 @@ class HeaderFeedback extends Component {
                 }
 
                 .textarea-wrapper {
-                  height: 32px;
-                  width: 90px;
+                  height: var(--closed-height);
+                  width: var(--closed-width);
                   transition: all 150ms ease-in-out, border-radius 150ms step-start;
                 }
 
                 .geist-feedback-input.focused .textarea-wrapper {
+                  transform: translateX(calc((var(--closed-width) - var(--open-width)) / 2));
                   display: flex;
                   flex-direction: column;
                   border: none;
-                  width: 275px;
-                  height: 174px;
+                  width: var(--open-width);
+                  height: var(--open-height);
                   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
                   background: #fff;
                   border-radius: 4px;
@@ -376,11 +383,11 @@ class HeaderFeedback extends Component {
                 }
 
                 .geist-feedback-input.focused .textarea-wrapper textarea {
-                  width: 275px;
+                  width: var(--open-width);
                   border-color: #fff;
                   border-radius: 5px 5px 0 0;
                   background: #fff;
-                  padding: 4px 12px;
+                  padding: var(--padding);
                   overflow-y: visible;
                   transition: none;
                 }
@@ -391,7 +398,7 @@ class HeaderFeedback extends Component {
                   position: absolute;
                   left: 0;
                   top: 0;
-                  width: 275px;
+                  width: var(--open-width);
                   font-size: 0.875rem;
                   height: 100%;
                   display: flex;
@@ -441,7 +448,7 @@ class HeaderFeedback extends Component {
                 .controls {
                   pointer-events: none;
                   visibility: hidden;
-                  width: 275px;
+                  width: var(--closed-width);
                   background-color: #fff;
                   display: flex;
                   align-items: center;
@@ -477,6 +484,7 @@ class HeaderFeedback extends Component {
                   padding: 8pt;
                   pointer-events: inherit;
                   visibility: visible;
+                  width: var(--open-width);
                 }
 
                 @keyframes appear {
@@ -485,26 +493,6 @@ class HeaderFeedback extends Component {
                   }
                   to {
                     opacity: 1;
-                  }
-                }
-
-                @media (max-width: 1024px) {
-                  .controls,
-                  .error-message,
-                  .success-message,
-                  .geist-feedback-input.focused .textarea-wrapper,
-                  .geist-feedback-input.focused .textarea-wrapper textarea {
-                    width: calc(275px - (1024px - 100vw) * 0.2);
-                  }
-                }
-
-                @media (max-width: 960px) {
-                  .controls,
-                  .error-message,
-                  .success-message,
-                  .geist-feedback-input.focused .textarea-wrapper,
-                  .geist-feedback-input.focused .textarea-wrapper textarea {
-                    width: calc(260px - (960px - 100vw) * 0.2);
                   }
                 }
               `}

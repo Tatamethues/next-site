@@ -5,8 +5,7 @@ import Popover from '../popover';
 import Container from '../container';
 import HeartIcon from '../icons/heart';
 import Sticky from '../sticky';
-
-const SUBMIT_URL = `https://spectrum.chat/thread/e425a8b6-c9cb-4cd1-90bb-740fb3bd7541`;
+import { links } from '../../site-manifest';
 
 function Filter({ onSelect, selectedId }) {
   const isMobile = useIsMobile();
@@ -45,7 +44,7 @@ function Filter({ onSelect, selectedId }) {
           })}
           <Popover content={<div style={{ whiteSpace: 'nowrap' }}>Share your website!</div>}>
             <a
-              href={SUBMIT_URL}
+              href={links.submitShowcase}
               className="not-mobile"
               aria-label="Submit Your Website"
               rel="noopener noreferrer"

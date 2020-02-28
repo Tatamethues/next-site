@@ -38,13 +38,9 @@ const nextConfig = {
   target: 'experimental-serverless-trace', // Not required for Now, but used by GitHub Actions
   pageExtensions: ['jsx', 'js', 'ts', 'tsx', 'mdx'],
   experimental: {
-    polyfillsOptimization: true,
     babelMultiThread: true,
     modern: true,
     granularChunks: true,
-    deferScripts: true,
-    prefetchPreload: true,
-    catchAllRouting: true,
     rewrites() {
       return [
         {

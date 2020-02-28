@@ -1,11 +1,10 @@
 import React from 'react'
 import { SkipNavContent } from '@reach/skip-nav'
 
-import Header from '../../components/header'
 import Footer from '../../components/footer'
-import Navbar from '../../components/navbar'
 import Screen from '../../components/screen'
 import Page from '../../components/page'
+import FeedbackContext from '../../components/feedback-context'
 
 import Container from '../../components/container'
 import SectionHeader from '../../components/section-header'
@@ -55,18 +54,16 @@ const items = previewItems
   })
 
 export default () => (
-  <Page title="Blog | Next.js">
-    <Screen offset={64 + 400}>
-      <Container padding wide>
-        <SectionHeader title="Blog" />
-        <SkipNavContent />
-        {items}
-      </Container>
-    </Screen>
-    <Footer />
-  </Page>
+  <FeedbackContext.Provider value={{ label: 'next-blog' }}>
+    <Page title="Blog | Next.js">
+      <Screen offset={64 + 400}>
+        <Container padding wide>
+          <SectionHeader title="Blog" />
+          <SkipNavContent />
+          {items}
+        </Container>
+      </Screen>
+      <Footer />
+    </Page>
+  </FeedbackContext.Provider>
 )
-
-export const config = {
-  amp: true
-}
