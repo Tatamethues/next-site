@@ -149,6 +149,14 @@ export async function unstable_getStaticProps({ params }) {
   });
   const route = manifest && findRouteByPath(slug, manifest.routes);
 
+  console.log('SSG', {
+    tag,
+    slug,
+    currentTag,
+    route,
+    hasRoutes: Boolean(manifest && manifest.routes)
+  });
+
   if (!route) return {};
 
   const md = await getRawFileFromRepo(route.path, currentTag);
