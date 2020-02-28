@@ -15,11 +15,11 @@ function areEqual(prevProps, props) {
   return prevProps.route.path === props.route.path;
 }
 
-function DocsPage({ path, html }) {
+function DocsPage({ route, routes, html }) {
   const { query } = useRouter();
   const { tag, slug } = getSlug(query);
   const href = '/docs/[...slug]';
-  const editUrl = `${GITHUB_URL}/${REPO_NAME}/edit/canary${path}`;
+  const editUrl = `${GITHUB_URL}/${REPO_NAME}/edit/canary${route.path}`;
   const { prevRoute, nextRoute } = getRouteContext(route, routes);
 
   return (
@@ -71,13 +71,8 @@ function DocsPage({ path, html }) {
 
       <style jsx>{`
         .docs {
-          max-width: 100%;
-        }
-        @media screen and (max-width: 950px) {
-          .docs {
-            max-width: 100%;
-            margin: 0;
-          }
+          /* 300px is the sidebar width and its margin */
+          min-width: calc(100% - 300px - 1rem);
         }
         .page-nav {
           display: flex;
