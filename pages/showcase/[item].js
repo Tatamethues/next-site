@@ -1,7 +1,7 @@
 import { mapping } from '../../showcase-manifest';
 import Showcase from './index';
 
-export async function unstable_getStaticPaths() {
+export async function getStaticPaths() {
   return {
     paths: Object.keys(mapping).map(key => {
       return { params: { item: key } };
@@ -9,7 +9,7 @@ export async function unstable_getStaticPaths() {
   };
 }
 
-export async function unstable_getStaticProps({ params }) {
+export async function getStaticProps({ params }) {
   return {
     props: {
       item: params.item
