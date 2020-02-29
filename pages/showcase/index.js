@@ -58,7 +58,7 @@ function Showcase({ item }) {
   );
 }
 
-export async function unstable_getStaticProps() {
+export async function getStaticProps() {
   return {
     props: {},
     revalidate: false
