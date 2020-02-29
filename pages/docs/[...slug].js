@@ -68,8 +68,6 @@ function SidebarRoutes({ isMobile, routes: currentRoutes, level = 1 }) {
 const Docs = ({ routes, route, data, html }) => {
   const router = useRouter();
 
-  console.log('DATA', { routes, route, router });
-
   if (!route) {
     return <Error statusCode={404} />;
   }
@@ -148,15 +146,6 @@ export async function getStaticProps({ params }) {
     throw error;
   });
   const route = manifest && findRouteByPath(slug, manifest.routes);
-
-  console.log('SSG', {
-    params,
-    tag,
-    slug,
-    currentTag,
-    route,
-    hasRoutes: Boolean(manifest && manifest.routes)
-  });
 
   if (!route) return {};
 
