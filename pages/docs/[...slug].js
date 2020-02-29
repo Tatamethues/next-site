@@ -133,13 +133,13 @@ const Docs = ({ routes, route, data, html }) => {
   );
 };
 
-export async function unstable_getStaticPaths() {
+export async function getStaticPaths() {
   const tag = await getLatestTag();
   const manifest = await fetchDocsManifest(tag);
-  return { paths: getPaths(manifest.routes) };
+  return { paths: getPaths(manifest.routes), fallback: true };
 }
 
-export async function unstable_getStaticProps({ params }) {
+export async function getStaticProps({ params }) {
   const { tag, slug } = getSlug(params);
   const currentTag = tag || (await getLatestTag());
   const manifest = await fetchDocsManifest(currentTag).catch(error => {
@@ -150,6 +150,7 @@ export async function unstable_getStaticProps({ params }) {
   const route = manifest && findRouteByPath(slug, manifest.routes);
 
   console.log('SSG', {
+    params,
     tag,
     slug,
     currentTag,
