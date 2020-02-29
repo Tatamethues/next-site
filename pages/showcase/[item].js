@@ -5,7 +5,8 @@ export async function getStaticPaths() {
   return {
     paths: Object.keys(mapping).map(key => {
       return { params: { item: key } };
-    })
+    }),
+    fallback: false
   };
 }
 
